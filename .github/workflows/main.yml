@@ -1,0 +1,38 @@
+name: Build and Upload Gatsby Site
+
+on:
+  push:
+    branches: [ "main" ]
+  repository_dispatch:
+    types: [gatsby_build]
+
+jobs:
+  build_and_upload:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Gatsby site
+        run: npm run build
+
+      - name: List files for debugging
+        run: ls -al public
+
+      - name: Upload files to FTP
+        uses: SamKirkland/FTP-Deploy-Action@4.1.0
+        with:
+          server: 89.117.188.227  # Replace with your Hostinger FTP server IP or domain
+          username: u880328788
+          password: H87quzx*
+          local-dir: public  # Directory to upload (Gatsby build output directory)
+          server-dir: /domains/staging.winnar.com/public_html/test/  # Adjust as needed
