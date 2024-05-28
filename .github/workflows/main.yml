@@ -34,5 +34,5 @@ jobs:
           server: 89.117.188.227  # Replace with your Hostinger FTP server IP or domain
           username: u880328788
           password: H87quzx*
-          local-dir: public  # Directory to upload (Gatsby build output directory)
+          local-dir: public/  # Directory to upload (Gatsby build output directory)
           server-dir: /domains/staging.winnar.com/public_html/test/  # Adjust as needed
